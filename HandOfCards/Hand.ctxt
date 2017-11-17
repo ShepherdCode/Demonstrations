@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ demonstrateHand()
+comment1.params=
+comment1.target=int\ initialize()
+comment2.params=newCard
+comment2.target=void\ addCard(Card)
+comment3.params=oldCard
+comment3.target=boolean\ removeCard(Card)
+numComments=4
