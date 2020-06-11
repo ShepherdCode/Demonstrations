@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=GameModel
+comment0.text=\n\ GameModel\ manages\ the\ game\ board\ and\ all\ its\ cells.\n
+comment1.params=rows\ cols
+comment1.target=GameModel(int,\ int)
+comment1.text=\n\ Constructor.\n
+comment2.params=
+comment2.target=int\ advanceOneGeneration()
+comment2.text=\n\ Advance\ one\ generation,\ starting\ by\ counting\ neighbors.\n\ Side\ effect\:\ this\ changes\ the\ state\ of\ many\ cells.\n\ Algorithm\:\ \n\ 1)\ Visit\ every\ cell.\ Update\ its\ neighbor\ counts.\n\ 2)\ Visit\ every\ cell.\ Make\ it\ live\ or\ die.\n\ @return\ Number\ of\ cells\ changed.\n
+comment3.params=
+comment3.target=void\ createSampleShapes()
+comment3.text=\n\ Create\ some\ shapes\ to\ get\ the\ game\ started.\n\ Poke\ each\ shape\ into\ the\ grid.\n\ This\ works\ best\ with\ a\ grid\ of\ at\ least\ 15\ x\ 15.\n
+comment4.params=
+comment4.target=void\ clearAllCellStates()
+comment5.params=row\ col
+comment5.target=boolean\ getCurrentStateOfCell(int,\ int)
+comment6.params=
+comment6.target=int\ getNumRows()
+comment7.params=
+comment7.target=int\ getNumCols()
+comment8.params=row\ col
+comment8.target=void\ toggleCell(int,\ int)
+numComments=9

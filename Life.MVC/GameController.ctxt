@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=GameController
+comment0.text=\n\ GameController\ runs\ the\ game.\n\ It\ also\ instantiates\ all\ classes.\n\ It\ also\ starts\ the\ display.\n\ It\ also\ handles\ button\ events.\n
+comment1.params=
+comment1.target=void\ main()
+comment2.params=
+comment2.target=GameController()
+comment3.params=p
+comment3.target=void\ handleMouseClick(java.awt.Point)
+comment4.params=src
+comment4.target=void\ handleButtonPress(java.lang.Object)
+numComments=5

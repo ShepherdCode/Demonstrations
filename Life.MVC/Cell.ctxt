@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Cell
+comment0.text=\n\ One\ cell\ of\ the\ board\ of\ the\ Game\ of\ Life.\n\ The\ cell\ does\ not\ communicate\ with\ other\ cells.\n\ This\ cellular\ automata\ computes\ whether\ to\ live\ or\ die\n\ given\ the\ crowding\ conditions.\n\ A\ special\ kind\ of\ cell,\ "border",\ never\ updates\ itself.\n
+comment1.params=
+comment1.target=Cell()
+comment2.params=
+comment2.target=void\ makeBorder()
+comment3.params=newState
+comment3.target=void\ setState(boolean)
+comment4.params=
+comment4.target=boolean\ getState()
+comment5.params=value
+comment5.target=void\ setCount(int)
+comment6.params=
+comment6.target=int\ getCount()
+comment7.params=
+comment7.target=boolean\ predictNextState()
+comment7.text=\n\ Determine\ whether\ the\ cell\ should\ live.\ \n\ @return\ This\ cell's\ proper\ state\ for\ next\ generation.\n
+numComments=8
