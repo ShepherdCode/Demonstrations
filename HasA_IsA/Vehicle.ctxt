@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Vehicle
+comment1.params=
+comment1.target=Vehicle()
+comment2.params=name
+comment2.target=Vehicle(java.lang.String)
+comment3.params=
+comment3.target=void\ blowHorn()
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment5.params=date
+comment5.target=void\ addOil(java.lang.String)
+comment6.params=
+comment6.target=java.lang.String\ getLastOil()
+comment7.params=date
+comment7.target=void\ addGas(java.lang.String)
+comment8.params=
+comment8.target=java.lang.String\ getLastGas()
+numComments=9
