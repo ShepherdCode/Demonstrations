@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=DataModel
+comment0.text=\n\ The\ Data\ Model\ manages\ one\ table\ of\ data.\n
+comment1.params=
+comment1.target=DataModel()
+comment1.text=\n\ Construct\ a\ Data\ Model.\n
+comment2.params=
+comment2.target=java.lang.Object[][]\ getAllData()
+comment2.text=\n\ Get\ the\ data\ table.\n\ The\ return\ is\ a\ 2D\ matrix\ consiting\ of\ rows\ of\ fields.\n\ Every\ row\ assumed\ to\ have\ the\ same\ number\ and\ types\ of\ fields.\n\ Column\ count\ assumed\ the\ same\ as\ that\ of\ the\ column\ names.\n\ Every\ cell\ assumed\ to\ be\ type\ String,\ Integer,\ or\ Double.\n\ The\ returned\ table\ excludes\ column\ headers.\n\ @return\ A\ table\ of\ values.\ Possibly\ empty.\n
+comment3.params=
+comment3.target=java.lang.Object[]\ getColumnNames()
+comment3.text=\n\ Get\ the\ column\ names.\n\ Every\ name\ is\ of\ type\ String,\ Integer,\ or\ Double.\n\ @return\ An\ array\ of\ column\ names.\ Possibly\ empty.\n
+comment4.params=column
+comment4.target=void\ sort(int)
+comment4.text=\n\ Sort\ the\ table.\n\ Sorts\ the\ rows\ using\ Arrays.sort().\n\ Sorts\ based\ on\ one\ column\ only.\n\ @param\ column\ The\ column\ number\ to\ sort\ on.\ Starts\ at\ zero.\n
+comment5.params=filename
+comment5.target=boolean\ loadFromCSV(java.lang.String)
+comment5.text=\n\ Load\ an\ entire\ CSV\ file\ into\ RAM.\n\ Use\ getter\ methods\ on\ this\ class\ to\ access\ the\ loaded\ data.\n\ This\ would\ print\ errors\ on\ the\ console\ if\ the\ file\ is\ not\ found.\n\ @return\ Whether\ the\ file\ could\ be\ loaded.\n
+comment6.params=
+comment6.target=int\ getNumRows()
+comment6.text=\n\ Report\ the\ number\ of\ rows\ of\ data\ currently\ in\ memory.\n
+comment7.params=
+comment7.target=int\ getNumCols()
+comment7.text=\n\ Report\ the\ number\ of\ columns\ in\ the\ table\ this\ is\ currently\ in\ memory.\n
+numComments=8

@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=EventsListener
+comment0.text=\n\ The\ Listener\ responds\ to\ user\ actions.\n
+comment1.params=master
+comment1.target=EventsListener(DataController)
+comment1.text=\ \n\ Constructor.\ \n\ @param\ master\ The\ object\ that\ should\ be\ notified\ of\ events.\n
+comment2.params=me
+comment2.target=void\ mouseClicked(java.awt.event.MouseEvent)
+comment2.text=\n\ Respond\ to\ mouse\ click.\ \n\ Delegate\ to\ the\ appropriate\ program\ component.\n\ @param\ me\ A\ mouse\ event.\n
+comment3.params=e
+comment3.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment3.text=\n\ Respond\ to\ a\ button\ click.\n\ Delegate\ to\ the\ appropriate\ program\ component.\n\ @param\ e\ An\ action\ event.\n
+numComments=4
