@@ -26,11 +26,16 @@ public class CarsExample {
     }
 
     public static void main () {
-        CarsExample ce = new CarsExample("cars.csv");
+        String filename = "cars.csv";
+        int myPrice = 30000;
+        CarsExample ce = new CarsExample(filename);
         if (ce.open()) {
-            //ce.print();
+            System.out.println("This demo will parse "+filename);
+            System.out.println("and search for cars in the price range of "+myPrice);
             Car [] c = ce.getCars();
-            ce.printAffordableCars(c, 30000);
+            ce.printAffordableCars(c, myPrice);
+        } else {
+            System.err.println("Cannot load this file: "+ filename);
         }
     }
 

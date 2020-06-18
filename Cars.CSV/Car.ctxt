@@ -8,4 +8,6 @@ comment3.params=
 comment3.target=java.lang.String\ toString()
 comment4.params=price
 comment4.target=boolean\ inPriceRangeOf(int)
-numComments=5
+comment5.params=
+comment5.target=void\ carDemo()
+numComments=6

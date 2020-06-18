@@ -158,8 +158,9 @@ public class FileParserCSV {
         return ary;
     }
 
-    public static void main () {
+    public static void parseDemo () {
         try {
+            System.out.println("This demo will write a CSV file and parse the file.");
             String fn = "test.csv";
             FileWriter fw = new FileWriter (fn);
             BufferedWriter bw = new BufferedWriter(fw);
