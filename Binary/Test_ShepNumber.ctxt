@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Test_ShepNumber
+comment1.params=
+comment1.target=void\ main()
+comment2.params=
+comment2.target=int\ getNumTestsRun()
+comment3.params=input
+comment3.target=boolean\ testInt(int)
+comment4.params=input
+comment4.target=boolean\ testBinary(int)
+comment5.params=b
+comment5.target=java.lang.String\ getResultString(boolean)
+numComments=6

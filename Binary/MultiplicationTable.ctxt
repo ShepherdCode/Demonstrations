@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=MultiplicationTable
+comment1.params=num_columns\ num_rows
+comment1.target=MultiplicationTable(int,\ int)
+comment2.params=
+comment2.target=void\ showTable()
+numComments=3
