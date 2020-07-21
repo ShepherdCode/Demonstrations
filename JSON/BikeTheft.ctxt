@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=BikeTheft
+comment1.params=id\ title\ city
+comment1.target=BikeTheft(int,\ java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getTime()
+comment3.params=time
+comment3.target=void\ setTime(long)
+comment4.params=
+comment4.target=java.lang.String\ toString()
+numComments=5

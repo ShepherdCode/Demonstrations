@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=ParserDemo
+comment1.params=
+comment1.target=void\ demo_ObjectsFromURL()
+comment2.params=
+comment2.target=void\ demo_StreamFromURL()
+comment3.params=
+comment3.target=void\ demo_StreamFromFile()
+comment4.params=
+comment4.target=void\ demo_LoadEntireFile()
+comment5.params=is
+comment5.target=void\ closeStream(java.io.InputStream)
+comment6.params=http
+comment6.target=java.io.InputStream\ openURL(java.lang.String)
+comment7.params=filename
+comment7.target=java.io.InputStream\ openFile(java.lang.String)
+numComments=8
