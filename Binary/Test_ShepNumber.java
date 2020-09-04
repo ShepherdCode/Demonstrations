@@ -36,7 +36,7 @@ public class Test_ShepNumber {
     private boolean testBinary (int input) {
         String goldStandard = Integer.toBinaryString(input);
         ShepNumber myNumber = new ShepNumber (input);
-        String myString = myNumber.toBinaryString();
+        String myString = myNumber.getBinaryString();
         boolean same = myString.equals(goldStandard);
         System.out.printf("Test %d ---\n", ++this.testsRun);
         System.out.printf("This object represents %d decimal.\n", input);
