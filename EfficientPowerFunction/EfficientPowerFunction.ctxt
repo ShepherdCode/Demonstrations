@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=EfficientPowerFunction
+comment1.params=
+comment1.target=EfficientPowerFunction()
+comment2.params=optimize
+comment2.target=EfficientPowerFunction(boolean)
+comment3.params=base\ exp
+comment3.target=double\ power(double,\ int)
+comment4.params=
+comment4.target=int\ getIterations()
+comment5.params=
+comment5.target=void\ main()
+numComments=6
