@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=PrimitiveParser
+comment0.text=\n\ Parse\ a\ CSV\ file\ using\ the\ String.split(",")\ method.\n\ This\ is\ primitive\ and\ it\ won't\ work\ on\ all\ CSV\ files.\n
+comment1.params=
+comment1.target=PrimitiveParser()
+comment2.params=
+comment2.target=boolean\ wasSuccess()
+comment2.text=\n\ Indicates\ whether\ the\ last\ file\ operation\ was\ successful.\n
+comment3.params=filename
+comment3.target=void\ parseAndPrint(java.lang.String)
+comment3.text=\n\ Show\ file\ contents\ on\ the\ Java\ console.\n
+comment4.params=filename
+comment4.target=java.util.ArrayList\ parse(java.lang.String)
+comment4.text=\n\ Parse\ a\ CSV\ file.\n\ Load\ a\ data\ structure.\n\ Return\ the\ data\ structure.\n
+comment5.params=data
+comment5.target=void\ print(java.util.ArrayList)
+comment5.text=\n\ Given\ a\ data\ structure,\ dump\ contents\ to\ the\ console.\n
+comment6.params=
+comment6.target=void\ main()
+numComments=7
