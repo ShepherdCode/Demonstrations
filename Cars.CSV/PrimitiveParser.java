@@ -78,6 +78,7 @@ public class PrimitiveParser {
 
     public static void main () {
         String FILENAME = "Cars.csv";
+        //String FILENAME = "Heart.csv";
         PrimitiveParser sp = new PrimitiveParser();
         
         System.out.println("Just print...");
