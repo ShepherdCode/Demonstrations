@@ -1,3 +1,5 @@
+package Binary;
+
 // TO DO: write JavaDoc for this class.
 public class ShepNumber {
     int instanceVariable;

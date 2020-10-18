@@ -1,3 +1,5 @@
+package Binary;
+
 public class Test_MultiplicationTable {
     public Test_MultiplicationTable()    {
     }

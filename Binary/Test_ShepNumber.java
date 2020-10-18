@@ -1,3 +1,5 @@
+package Binary;
+
 public class Test_ShepNumber {
     int testsRun;
     public static void main () {
