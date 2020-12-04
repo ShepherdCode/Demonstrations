@@ -6,6 +6,10 @@ public class ParserDemo {
     static String MY_FILE = "bike_example.json";
     static String MY_URL = "https://bikewise.org:443/api/v2/incidents?page=1&proximity=60647&proximity_square=10";
 
+    public static void main() {
+        System.out.println("Please run one of the demo methods.");
+    }
+    
     public static void demo_ObjectsFromURL () {
         System.out.println("This demonstration will parse JSON from this URL:");
         System.out.println(MY_URL);
@@ -30,15 +34,18 @@ public class ParserDemo {
         BikeTheft [ ] bikeData = new BikeTheft [ s ];
         for (int i=0; i<s; i++) {
             JsonObject jo = jsa.getJsonObject(i);
+            // Extract
             int id = jo.getInt("id");
             String place = jo.getString("address");
             String title = jo.getString("title");
             long time = jo.getInt("occurred_at");
+            // Transform
             BikeTheft theft = new BikeTheft (id,title,place);
             theft.setTime(time);
+            // Load
             bikeData[i] = theft;
         }
-        System.out.println("We now have an array of Team.");
+        System.out.println("Here is our array of bike thefts.");
         for (int i=0; i<bikeData.length; i++) {
             BikeTheft theft = bikeData[i];
             System.out.println(i + ") "+ theft);
