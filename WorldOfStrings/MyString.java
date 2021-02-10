@@ -1,7 +1,7 @@
 /**
  * Demonstration of how String works on the inside.
  * @author Jason Miller
- * @version 1.0
+ * @version 1.1
  */
 public class MyString {
     private String x;
