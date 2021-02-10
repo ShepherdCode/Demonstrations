@@ -1,6 +1,7 @@
 /**
  * Demonstration of how String works on the inside.
  * This is really great javadoc!
+ * No, I think it sucks.
  * @author Jason Miller
  * @version 1.0
  */
