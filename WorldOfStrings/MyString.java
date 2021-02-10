@@ -1,5 +1,6 @@
 /**
  * Demonstration of how String works on the inside.
+ * This is really great javadoc!
  * @author Jason Miller
  */
 public class MyString {
