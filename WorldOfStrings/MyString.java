@@ -2,6 +2,7 @@
  * Demonstration of how String works on the inside.
  * This is really great javadoc!
  * @author Jason Miller
+ * @version 1.0
  */
 public class MyString {
     private String x;
