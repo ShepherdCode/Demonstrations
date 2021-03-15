@@ -3,8 +3,6 @@ import java.awt.*;
 import javax.swing.JFrame;
 public class DrawApp {
     JFrame frame;
-    TextArea detailArea;
-    TextField idArea;
     String appName;
     DrawCanvas canvas;
 
