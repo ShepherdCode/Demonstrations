@@ -35,8 +35,8 @@ public class TestProg {
     public static void main () {
         TestProg tp = new TestProg();
         int [] data1 = {1,2,3,4};
-        tp.showStats(data1); // answers are 10,3,2.5,1.3
+        tp.showStats(data1); // answers are 10,3,2.5,1.12
         int [] data2 = {10,50,30,40,20};
-        tp.showStats(data2); // answers are150,40,30,15.8
+        tp.showStats(data2); // answers are150,40,30,14.1
     }
 }
