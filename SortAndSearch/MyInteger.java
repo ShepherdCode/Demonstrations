@@ -26,7 +26,8 @@ implements VerboseCompare {
     }
 
     public int compareTo (Object that) {
-        int cmp = -1;
+        comparisonCounter ++;
+        int cmp = -1;        
         if (that instanceof MyInteger) {
             MyInteger thatInteger = (MyInteger) that;
             cmp = this.value - thatInteger.getInt();

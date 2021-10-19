@@ -1,4 +1,4 @@
-public interface VerboseCompare {
+public interface VerboseCompare extends Comparable {
     int compareTo (Object other);
     int getCount() ;
     void resetCount() ;

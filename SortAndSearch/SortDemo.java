@@ -7,18 +7,21 @@ import java.util.Random;
  * @version v03
  */
 public class SortDemo {
-    public SortDemo(int size) {
+    public SortDemo() {
     }
 
-    public static void fillRandom (MyInteger[] ary) {
+    public MyInteger[] generateRandomData (int len, int max) {
         Random generator = new Random();
+        int rand;
+        MyInteger[] ary = new MyInteger[len];
         for (int i=0; i<ary.length; i++) {
-            int rand = generator.nextInt(100);
+            rand = generator.nextInt(max);
             ary[i] = new MyInteger(rand);
         }
+        return ary;
     }
 
-    public static void displayAll (String msg, MyInteger[] ary) {
+    public void displayAll (String msg, MyInteger[] ary) {
         System.out.printf("--- %s ---\n", msg);
         String disp = Arrays.deepToString(ary);
         System.out.println(disp);
@@ -29,18 +32,44 @@ public class SortDemo {
         return Arrays.binarySearch(ary,myint);
     }
 
-    public static void main () {
-        int SIZE = 10;
-        MyInteger [] ary1 = new MyInteger [SIZE];
-        MyInteger [] buffer = new MyInteger [SIZE];
-        Sorter sorter = new Sorter(buffer);
-        fillRandom(ary1);
+    public void demoMergeSort 
+    (MyInteger[] data, boolean countCompares, boolean showSteps) {
+        MyInteger [] buffer = new MyInteger [data.length];
+        VerboseSorter sorter = new VerboseSorter(buffer,showSteps);
+        if (countCompares) {
+            data[0].resetCount();
+        }
+        sorter.sort(data);
+        if (countCompares) {
+            int c = data[0].getCount();
+            System.out.println("Sorting took "+c+" comparisons.");
+        }
+    }
 
-        MyInteger [] ary2 = ary1.clone(); 
-        displayAll("Random numbers, random order",ary2);
-        System.out.println("Sorting by mergesort...");
-        sorter.sort(ary2);
-        displayAll("Random numbers, sorted",ary2);
+    public void demoJavaSort
+    (MyInteger[] data, boolean countCompares) {
+        if (countCompares) {
+            data[0].resetCount();
+        }
+        Arrays.sort(data);
+        if (countCompares) {
+            int c = data[0].getCount();
+            System.out.println("Sorting took "+c+" comparisons.");
+        }
+    }
+
+    public static void main (String [] args) {
+        SortDemo demo = new SortDemo();
+        MyInteger [] copy;
+        int c;
+        MyInteger[] data = demo.generateRandomData(10,100);
+        demo.displayAll("Random numbers, random order:",data);
+        copy = data.clone();
+        demo.demoJavaSort(copy,true);
+        demo.displayAll("Sorted by Java",copy);
+        copy = data.clone(); 
+        demo.demoMergeSort(copy,true,false);
+        demo.displayAll("Sorted by mergesort",copy);
 
     }
 }
