@@ -37,7 +37,7 @@ public class VerboseSearcher {
             say("Found it!");
             return pos;
         } else if (cmp<0 && half==start || cmp>0 && half==end-1) {
-            say("Can't find it!");
+            say("Nowhere left to look.");
             return 0-pos;
         } else {
             indentation++;
@@ -48,7 +48,6 @@ public class VerboseSearcher {
                 say("Go right.");
                 pos = binSearch(data,qry,half,end);
             }
-            indentation--;
         }
         return pos; 
     }
