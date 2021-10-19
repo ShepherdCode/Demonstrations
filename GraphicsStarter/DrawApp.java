@@ -8,8 +8,8 @@ public class DrawApp {
 
     public DrawApp (String appName) {
         this.appName = appName;
-        frame= new JFrame(appName); 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        frame= new JFrame(appName);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());
         frame.setBackground(Color.red);
         Label label = new Label("Art");
@@ -23,10 +23,10 @@ public class DrawApp {
     public void display(int width, int height) {
         canvas.setSize(width,height);
         frame.pack(); // pack frame around canvas
-        frame.setVisible(true); 
+        frame.setVisible(true);
     }
 
-    public static void main () {
+    public static void main (String [] args) {
         int width = 400;
         int height = 400;
         String title = "CIS 211 App";
