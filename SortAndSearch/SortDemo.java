@@ -21,53 +21,6 @@ public class SortDemo {
         return ary;
     }
 
-    public int sequentialSearch
-    (MyInteger[] data, MyInteger qry, boolean countCompares) {
-        if (countCompares) {
-            data[0].resetCount();
-        }
-        int pos = -1;
-        for (int i=0; i<data.length && pos<0; i++) {
-            if (data[i].compareTo(qry)==0) {
-                pos=i;
-            }
-        }
-        if (pos>=0) {
-            System.out.printf("Found %s at %d.\n",qry,pos);
-        } else {
-            System.out.printf("Did not find %s.\n",qry);
-        }
-        if (countCompares) {
-            int c = data[0].getCount();
-            System.out.println("Sequential search took "+c+" comparisons.");
-        }
-        return pos;
-    }
-
-    public int binarySearch
-    (MyInteger[] data, MyInteger qry, boolean countCompares) {
-        if (countCompares) {
-            data[0].resetCount();
-        }
-        int pos = Arrays.binarySearch(data,qry);
-        //int pos = binSearch(data,qry,0,data.length);
-        if (pos>=0) {
-            System.out.printf("Found %s at %d.\n",qry,pos);
-        } else {
-            System.out.printf("Did not find %s at %d.\n",qry,0-pos);
-        }
-        if (countCompares) {
-            int c = data[0].getCount();
-            System.out.println("Binary search took "+c+" comparisons.");
-        }
-        return pos;
-    }
-
-    private int binSearch (MyInteger[] data, MyInteger qry, int start, int end) {
-        int half = (end-start)/2;
-        return 0;
-    }
-    
     public void demoMergeSort 
     (MyInteger[] data, boolean countCompares, boolean showSteps) {
         MyInteger [] buffer = new MyInteger [data.length];
@@ -94,26 +47,62 @@ public class SortDemo {
         }
     }
 
+    public void demoSequentialSearch
+    (MyInteger[] data, MyInteger qry, 
+    boolean countCompares, boolean showSteps) {
+        System.out.println("Sequential search for "+qry);
+        VerboseSearcher searcher = new VerboseSearcher(showSteps);
+        if (countCompares) {
+            data[0].resetCount();
+        }
+        int pos = searcher.sequentialSearch(data,qry);
+        if (pos>=0) {
+            System.out.printf("Found %s at %d.\n",qry,pos);
+        } else {
+            System.out.printf("Did not find %s.\n",qry);
+        }
+        if (countCompares) {
+            int c = data[0].getCount();
+            System.out.println("Sequential search took "+c+" comparisons.");
+        }
+        
+    }
+    
+    public void demoBinarySearch
+    (MyInteger[] data, MyInteger qry, 
+    boolean countCompares, boolean showSteps) {
+        System.out.println("Binary search for "+qry);
+        VerboseSearcher searcher = new VerboseSearcher(showSteps);
+        if (countCompares) {
+            data[0].resetCount();
+        }
+        int pos = searcher.binarySearch(data,qry);
+        if (pos>=0) {
+            System.out.printf("Found %s at %d.\n",qry,pos);
+        } else {
+            System.out.printf("Did not find %s.\n",qry);
+        }
+        if (countCompares) {
+            int c = data[0].getCount();
+            System.out.println("Binary search took "+c+" comparisons.");
+        }
+        
+    }
+    
     public static void main (String [] args) {
         SortDemo demo = new SortDemo();
-        MyInteger [] copy;
-        int c;
         MyInteger[] data = demo.generateRandomData(16,100);
         MyInteger missing = new MyInteger(101);
         MyInteger sample = data[data.length-1];
         System.out.println("--- Dealing with shuffled data:");
         System.out.println(Arrays.deepToString(data));
-
-        demo.sequentialSearch(data,sample,true);
-        demo.sequentialSearch(data,missing,true);
-        //copy = data.clone();
-        //demo.demoJavaSort(copy,true);
-        //demo.displayAll("Sorted:",copy);
-        copy = data.clone(); 
-        System.out.println("--- Dealing with sorted data:");
-        demo.demoMergeSort(copy,true,false);
-        System.out.println(Arrays.deepToString(copy));
-        demo.binarySearch(copy,sample,true);
-        demo.binarySearch(copy,missing,true);
+        demo.demoSequentialSearch(data,sample,true,true);
+        demo.demoSequentialSearch(data,missing,true,true);
+        
+        System.out.println("\n--- Dealing with sorted data:");
+        demo.demoMergeSort(data,false,false);
+        System.out.println(Arrays.deepToString(data));
+        demo.demoBinarySearch(data,sample,true,true);
+        demo.demoBinarySearch(data,missing,true,true);
     }
 }

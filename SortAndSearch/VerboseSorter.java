@@ -1,9 +1,7 @@
-import java.util.Arrays;
 /**
- * Sort algorithm.
- *
- * @author Jason Miller
- * @version v02
+ * The VerboseSorter implements MergeSort.
+ * Set this.verbose to see step-by-step comentary.
+ * Set data.verbose to track number of comparisons.
  */
 public class VerboseSorter {
     private boolean verbose;
