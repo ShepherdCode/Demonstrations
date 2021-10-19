@@ -1,30 +1,45 @@
+import java.util.Arrays; // delete with find()
 import java.util.Random;
-import java.util.Arrays;
 /**
  * Demonstrate an array of objects using Integers.
  *
  * @author Jason
- * @version v01
+ * @version v02
  */
-public class ArrayOfIntegers
-{
+public class ArrayOfIntegers {
     private MyInteger [ ] collection;
     private Random generator;
+    private boolean verbose = false;
+    private boolean isSorted = true;
+    private int SIZE=2;
 
     /**
      * Constructor for objects of class ArrayOfIntegers
      */
-    public ArrayOfIntegers()
-    {
-        collection = new MyInteger [ 10 ];
+    public ArrayOfIntegers() {
+        collection = new MyInteger [ SIZE ];
         generator = new Random ();
     }
 
+    public ArrayOfIntegers clone () {
+        ArrayOfIntegers c = new ArrayOfIntegers();
+        c.collection = this.collection;
+        c.generator = this.generator;
+        c.verbose = this.verbose;
+        c.isSorted = this.isSorted;
+        return c;
+    }
+    
+    public void setVerbose (boolean v) {
+        verbose = v;
+    }
+    
     public void fillRandom () {
         for (int i=0; i<collection.length; i++) {
             int rand = generator.nextInt(100);
             collection[i] = new MyInteger(rand);
         }
+        isSorted = false;
     }
 
     public void displayAll (String msg) {
@@ -37,79 +52,50 @@ public class ArrayOfIntegers
         System.out.println();
     }
 
+    /**
+     * Indicate how many objects in the array.
+     * @return    the count
+     */
+    public int getSize() {
+        return collection.length;
+    }
+
     public int find(int q) {
         MyInteger myint = new MyInteger(q);
         return Arrays.binarySearch(collection,myint);
     }
 
-    /**
-     * Indicate how many objects in the array.
-     * @return    the count
-     */
-    public int getSize()
-    {
-        return collection.length;
+    protected MyInteger [] getArray () {
+        return collection;
     }
-
-    MyInteger[] merge (MyInteger [] left, MyInteger [] right) {
-        int lLen = left.length;
-        int rLen = right.length;
-        int sPos = 0, lPos = 0, rPos=0;
-        MyInteger [] sorted = new MyInteger[lLen+rLen];
-        while (lPos<lLen && rPos<rLen) {
-            if (left[lPos].compareTo(right[rPos]) <= 0) {
-                sorted[sPos++] = left[lPos++];
-            } else {
-                sorted[sPos++] = right[rPos++];
-            }
-        }
-        while (lPos<lLen) {
-            sorted[sPos++] = left[lPos++];
-        }
-        while (rPos<rLen) {
-            sorted[sPos++] = right[rPos++];
-        }
-        return sorted;
+    
+    protected void setArray (MyInteger [] ary) {
+        this.collection = ary;
     }
-
-    MyInteger[] mergesort(MyInteger [] ary) {
-        int len = ary.length;
-        if (len <= 2) {
-            MyInteger [] sorted = Arrays.copyOfRange(ary,0,len);
-            if (len==2 && sorted[0].compareTo(sorted[1]) > 0) {
-                MyInteger hold = sorted[0];
-                sorted[0] = sorted[1];
-                sorted[1] = hold;
-            }
-            return sorted;
-        }
-        int half = len/2;
-        MyInteger[] left = mergesort(Arrays.copyOfRange(ary,0, half));
-        MyInteger[] right =mergesort(Arrays.copyOfRange(ary,half,len));
-        MyInteger[] merged = merge(left,right);
-        return merged;
-    }
-
-    public void sort(boolean mergesort) {
-        if (mergesort) {
-            collection = mergesort(collection);
-        } else {
-            Arrays.sort(collection);
-        }
-    }
-
+    
     public static void main () {
-        ArrayOfIntegers ary = new ArrayOfIntegers();
-        System.out.println("Size is "+ary.getSize());
-        ary.fillRandom();
-        ary.displayAll("Random numbers, random order");
-        System.out.println("\nSorting by mergesort...");
-        ary.sort(true);
-        ary.displayAll("Random numbers, sorted");
-        System.out.println("Found 50 at "+ary.find(50));
-        System.out.println("\nSorting by java utility...");
-        ary.sort(false);
-        ary.displayAll("Random numbers, sorted");
-        System.out.println("Found 50 at "+ary.find(50));
+        MyInteger.setVerbose(false);
+        ArrayOfIntegers ary1 = new ArrayOfIntegers();
+        ary1.setVerbose(false);
+        Sorter sorts = new Sorter();
+        sorts.setVerbose(false);
+        System.out.println("Size is "+ary1.getSize());
+        ary1.fillRandom();
+
+        ArrayOfIntegers ary2 = ary1.clone(); 
+        ary2.displayAll("Random numbers, random order");
+        System.out.println("Sorting by mergesort...");
+        sorts.setAlgorithm(Sorter.MERGESORT);
+        sorts.sort(ary2);
+        ary2.displayAll("Random numbers, sorted");
+
+        ArrayOfIntegers ary3 = ary1.clone(); 
+        ary3.displayAll("Random numbers, random order");
+        System.out.println("Found 50 at "+ary3.find(50));
+        System.out.println("Sorting by java utility...");
+        sorts.setAlgorithm(Sorter.DEFAULT);
+        sorts.sort(ary3);
+        ary3.displayAll("Random numbers, sorted");
+        System.out.println("Found 50 at "+ary3.find(50));
     }
 }
