@@ -6,85 +6,61 @@ import java.util.Arrays;
  * @version v02
  */
 public class Sorter {
-    public static final int DEFAULT=0;
-    public static final int MERGESORT=1;
-    private int algorithm;
     private boolean verbose;
     private int indentation;
+    private VerboseCompare[] data;
+    private VerboseCompare[] buffer;
 
-    public Sorter()    {
-        algorithm=DEFAULT; 
+    public Sorter(VerboseCompare[] buffer)    {
+        this.buffer = buffer;
         verbose = false;
     }
 
-    /**
-     * Determine which sort algorithm shall be used.
-     * @param a 0=Arrays.sort(), 1=mergesort.
-     */
-    public void setAlgorithm(int a)    {
-        if (a<DEFAULT || a>MERGESORT) {  // invalid
-            a=DEFAULT; 
-        }
-        algorithm = a;
+    public void setVerbose () {
+        verbose = true;
     }
     
-    public void setVerbose (boolean v) {
-        verbose = v;
-    }
-    
-    public void sort(ArrayOfIntegers ary) {
-        MyInteger.resetCounter();
-        if (algorithm==MERGESORT) {
-            Comparable[] cary = (Comparable[]) ary.getArray();
-            mergesort(cary);
-            MyInteger[] iary = (MyInteger[]) cary;
-            ary.setArray(iary);
-        } else {
-            Arrays.sort(ary.getArray());
-        }
-        if (verbose) {
-            System.out.printf("Sorting required %d comparisons.\n",
-                MyInteger.resetCounter());
-        }
-    }
-
-    private Comparable[] merge (Comparable [] left, Comparable [] right) {
-        int lLen = left.length;
-        int rLen = right.length;
-        int sPos = 0, lPos = 0, rPos=0;
-        Comparable [] sorted = new Comparable[lLen+rLen];
-        //MyInteger [] sorted = new MyInteger[lLen+rLen];
-        while (lPos<lLen && rPos<rLen) {
-            if (left[lPos].compareTo(right[rPos]) <= 0) {
-                sorted[sPos++] = left[lPos++];
+    private void merge (int begin, int half, int end) {
+        int lPos = begin;
+        int rPos = half;
+        int sPos = begin;
+        while (lPos<half && rPos<end) {
+            if (data[lPos].compareTo(data[rPos]) <= 0) {
+                buffer[sPos++] = data[lPos++];
             } else {
-                sorted[sPos++] = right[rPos++];
+                buffer[sPos++] = data[rPos++];
             }
         }
-        while (lPos<lLen) {
-            sorted[sPos++] = left[lPos++];
+        while (lPos<half) {
+            buffer[sPos++] = data[lPos++];
         }
-        while (rPos<rLen) {
-            sorted[sPos++] = right[rPos++];
+        while (rPos<end) {
+            buffer[sPos++] = data[rPos++];
         }
-        return sorted;
+        for (int i=begin; i<end; i++) {
+            data[i]=buffer[i];
+        }
     }
 
-    private Comparable[] mergesort(Comparable [] ary) {
-        int len = ary.length;
+    public void sort(VerboseCompare[] data) {
+        this.data = data;
+        sort(0, data.length);
+    }
+    
+    private void sort(int begin, int end) {
+        int len = end-begin;
         if (len<=1) {
-            return ary;
+            return;
         }
         indentation ++;
-        int half = len/2;
-        say("Sort left from half="+half);
-        Comparable[] left = mergesort(Arrays.copyOfRange(ary,0, half));
-        say("Sort right from half="+half);
-        Comparable[] right =mergesort(Arrays.copyOfRange(ary,half,len));
-        say("Merge from half="+half);
-        Comparable[] merged = merge(left,right);
+        int half = begin+len/2;
+        say("Sort left from "+begin+" to "+half);
+        sort(begin, half);
+        say("Sort right from "+half+" to "+end);
+        sort(half,end);
+        say("Merge from "+begin+" to "+end);
+        merge(begin,half,end);
         indentation--;
-        return merged;
     }
 
     private void say (String s) {

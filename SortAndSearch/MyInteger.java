@@ -1,41 +1,50 @@
-public class MyInteger implements Comparable<MyInteger> {
+public class MyInteger 
+implements VerboseCompare {
     private int value;
-    private static boolean verbose = false;
+    private static boolean verbose;
     private static int comparisonCounter;
     public MyInteger (int value) {
         this.value=value;
+        this.comparisonCounter=0;
+        verbose = false;
     }
     
-    public static int resetCounter () {
-        int oldValue = comparisonCounter;
+    public int getCount() {
+        return comparisonCounter;
+    }
+    
+    public void resetCount () {
         comparisonCounter = 0;
-        return oldValue;
     }
     
-    public static void setVerbose (boolean v) {
-        verbose = v;
+    public void setVerbose () {
+        verbose = true;
     }
     
     public String toString () {
         return ""+value;
     }
-    
-    public int compareTo (MyInteger that) {
-        int cmp = this.getInt() - that.getInt();
-        comparisonCounter++;
+
+    public int compareTo (Object that) {
+        int cmp = -1;
+        if (that instanceof MyInteger) {
+            MyInteger thatInteger = (MyInteger) that;
+            cmp = this.value - thatInteger.getInt();
+        }
         if (verbose) {
-            char op= ' ';
-            if (cmp==0) {
-                op = '=';
-            } else if (cmp>0) {
+            char op= '=';
+            if (cmp>0) {
                 op = '>';
-                cmp = 1;
-            } else {
+            } else if (cmp<0) {
                 op = '<';
-                cmp = -1;
             }
-            System.out.printf("Comparison: this %d %c that %d\n",
-            this.value, op, that.value);
+            StringBuilder sb = new StringBuilder();
+            sb.append("Compare this ");
+            sb.append(this);
+            sb.append(op);
+            sb.append(" that ");
+            sb.append(that);
+            System.out.println(sb.toString());
         }
         return cmp;
     }
