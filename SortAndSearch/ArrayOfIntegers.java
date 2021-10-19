@@ -4,14 +4,14 @@ import java.util.Random;
  * Demonstrate an array of objects using Integers.
  *
  * @author Jason
- * @version v02
+ * @version v03
  */
 public class ArrayOfIntegers {
     private MyInteger [ ] collection;
     private Random generator;
     private boolean verbose = false;
     private boolean isSorted = true;
-    private int SIZE=2;
+    private int SIZE=10;
 
     /**
      * Constructor for objects of class ArrayOfIntegers

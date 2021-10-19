@@ -5,14 +5,6 @@ import java.util.Arrays;
  * @author Jason Miller
  * @version v02
  */
-
-
-
-//--- Random numbers, sorted ---
-// 83 33 94 84 42 20 8 96 99 30
-// Found 50 at -8
-
-
 public class Sorter {
     public static final int DEFAULT=0;
     public static final int MERGESORT=1;
@@ -43,7 +35,10 @@ public class Sorter {
     public void sort(ArrayOfIntegers ary) {
         MyInteger.resetCounter();
         if (algorithm==MERGESORT) {
-            ary.setArray(mergesort(ary.getArray()));
+            Comparable[] cary = (Comparable[]) ary.getArray();
+            mergesort(cary);
+            MyInteger[] iary = (MyInteger[]) cary;
+            ary.setArray(iary);
         } else {
             Arrays.sort(ary.getArray());
         }
@@ -53,11 +48,12 @@ public class Sorter {
         }
     }
 
-    private MyInteger[] merge (MyInteger [] left, MyInteger [] right) {
+    private Comparable[] merge (Comparable [] left, Comparable [] right) {
         int lLen = left.length;
         int rLen = right.length;
         int sPos = 0, lPos = 0, rPos=0;
-        MyInteger [] sorted = new MyInteger[lLen+rLen];
+        Comparable [] sorted = new Comparable[lLen+rLen];
+        //MyInteger [] sorted = new MyInteger[lLen+rLen];
         while (lPos<lLen && rPos<rLen) {
             if (left[lPos].compareTo(right[rPos]) <= 0) {
                 sorted[sPos++] = left[lPos++];
@@ -71,13 +67,10 @@ public class Sorter {
         while (rPos<rLen) {
             sorted[sPos++] = right[rPos++];
         }
-        System.err.println("left="+Arrays.toString(left));
-        System.err.println("right="+Arrays.toString(right));
-        System.err.println("sorted="+Arrays.toString(sorted));
         return sorted;
     }
 
-    private MyInteger[] mergesort(MyInteger [] ary) {
+    private Comparable[] mergesort(Comparable [] ary) {
         int len = ary.length;
         if (len<=1) {
             return ary;
@@ -85,12 +78,11 @@ public class Sorter {
         indentation ++;
         int half = len/2;
         say("Sort left from half="+half);
-        MyInteger[] left = mergesort(Arrays.copyOfRange(ary,0, half));
+        Comparable[] left = mergesort(Arrays.copyOfRange(ary,0, half));
         say("Sort right from half="+half);
-        MyInteger[] right =mergesort(Arrays.copyOfRange(ary,half,len));
+        Comparable[] right =mergesort(Arrays.copyOfRange(ary,half,len));
         say("Merge from half="+half);
-        MyInteger[] merged = merge(left,right);
-        System.err.println("merged="+Arrays.toString(merged));
+        Comparable[] merged = merge(left,right);
         indentation--;
         return merged;
     }
