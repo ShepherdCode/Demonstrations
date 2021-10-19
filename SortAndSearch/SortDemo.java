@@ -21,15 +21,47 @@ public class SortDemo {
         return ary;
     }
 
-    public void displayAll (String msg, MyInteger[] ary) {
-        System.out.printf("--- %s ---\n", msg);
-        String disp = Arrays.deepToString(ary);
-        System.out.println(disp);
+    public int sequentialSearch
+    (MyInteger[] data, int qry, boolean countCompares) {
+        MyInteger myint = new MyInteger(qry);
+        if (countCompares) {
+            data[0].resetCount();
+        }
+        int pos = -1;
+        for (int i=0; i<data.length && pos<0; i++) {
+            if (data[i].compareTo(myint)==0) {
+                pos=i;
+            }
+        }
+        if (countCompares) {
+            int c = data[0].getCount();
+            System.out.println("Sequential search took "+c+" comparisons.");
+        }
+        if (pos>=0) {
+            System.out.printf("Found %d at %d.\n",qry,pos);
+        } else {
+            System.out.printf("Did not find %d.\n",qry);
+        }
+        return pos;
     }
 
-    public int find(int q, MyInteger[] ary) {
-        MyInteger myint = new MyInteger(q);
-        return Arrays.binarySearch(ary,myint);
+    public int binarySearch
+    (MyInteger[] data, int qry, boolean countCompares) {
+        MyInteger myint = new MyInteger(qry);
+        if (countCompares) {
+            data[0].resetCount();
+        }
+        int pos = Arrays.binarySearch(data,myint);
+        if (countCompares) {
+            int c = data[0].getCount();
+            System.out.println("Binary search took "+c+" comparisons.");
+        }
+        if (pos>=0) {
+            System.out.printf("Found %d at %d.\n",qry,pos);
+        } else {
+            System.out.printf("Did not find %d at %d.\n",qry,0-pos);
+        }
+        return pos;
     }
 
     public void demoMergeSort 
@@ -42,7 +74,7 @@ public class SortDemo {
         sorter.sort(data);
         if (countCompares) {
             int c = data[0].getCount();
-            System.out.println("Sorting took "+c+" comparisons.");
+            System.out.println("Merge sort took "+c+" comparisons.");
         }
     }
 
@@ -54,7 +86,7 @@ public class SortDemo {
         Arrays.sort(data);
         if (countCompares) {
             int c = data[0].getCount();
-            System.out.println("Sorting took "+c+" comparisons.");
+            System.out.println("Java sort took "+c+" comparisons.");
         }
     }
 
@@ -63,13 +95,21 @@ public class SortDemo {
         MyInteger [] copy;
         int c;
         MyInteger[] data = demo.generateRandomData(10,100);
-        demo.displayAll("Random numbers, random order:",data);
-        copy = data.clone();
-        demo.demoJavaSort(copy,true);
-        demo.displayAll("Sorted by Java",copy);
-        copy = data.clone(); 
-        demo.demoMergeSort(copy,true,false);
-        demo.displayAll("Sorted by mergesort",copy);
+        int missing = 101;
+        int sample = data[data.length-1].getInt();
+        System.out.println("Random:");
+        System.out.println(Arrays.deepToString(data));
 
+        demo.sequentialSearch(data,sample,true);
+        demo.sequentialSearch(data,missing,true);
+        //copy = data.clone();
+        //demo.demoJavaSort(copy,true);
+        //demo.displayAll("Sorted:",copy);
+        copy = data.clone(); 
+        System.out.println("Sorted:");
+        demo.demoMergeSort(copy,true,false);
+        System.out.println(Arrays.deepToString(copy));
+        demo.binarySearch(copy,sample,true);
+        demo.binarySearch(copy,missing,true);
     }
 }
