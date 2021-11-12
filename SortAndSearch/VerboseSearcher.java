@@ -40,7 +40,7 @@ public class VerboseSearcher {
             say("Nowhere left to look.");
             return 0-pos;
         } else {
-            indentation++;
+            indentation++;  //optional
             if (cmp<0) {
                 say("Go left.");
                 pos = binSearch(data,qry,start,half);
