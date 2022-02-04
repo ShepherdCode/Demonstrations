@@ -8,13 +8,13 @@ public class StatisticalAnalyzer {
 
     public int recursiveSum (int i) {
         return 0; // TO DO: fix this.
-        // You must use recursion.
+        // You must use recursion. 
         // Assume i==0 initially.
         // Recurse till i==data.length.
     }
 
     public int iterativeSum () {
-        return 1; // TO DO: fix this.
+        return 1; // TO DO: fix this. 
         // You must use iteration.
     }
 
@@ -25,16 +25,17 @@ public class StatisticalAnalyzer {
     }
 
     public double getAverage () {
-        return 3.0; // TO DO: fix this.
-        // Use either sum method.
-        // Use division but not integer division!
+        return 3.0; // TO DO: fix this. 
+        // Use getSum() and division.
+        // Don't use integer division!
     }    
 
     public double getStdDev () {
         return 4.0; // Extra credit
         // Compute the population standard deviation.
         // deviation = ( one_value - average )
-        // stdev = sqrt ( sum ( square (deviation ) ) )
+        // N = population size
+        // stdev = sqrt ( sum ( square (deviation ) ) / N )
         // Use getAverage(), Math.pow(x,2), and Math.sqrt().
     }
 
