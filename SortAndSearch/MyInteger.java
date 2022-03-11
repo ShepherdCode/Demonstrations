@@ -5,8 +5,8 @@ implements VerboseCompare {
     private static int comparisonCounter;
     public MyInteger (int value) {
         this.value=value;
-        this.comparisonCounter=0;
-        verbose = false;
+        //this.comparisonCounter=0;
+        //verbose = false;
     }
     
     public int getCount() {

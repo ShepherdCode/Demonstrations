@@ -1,15 +1,38 @@
-import java.util.Arrays; // delete with find()
+import java.util.Arrays;
 import java.util.Random;
 /**
  * Demonstrate sorting an array.
  *
  * @author Jason
- * @version v03
+ * @version v04
  */
 public class SortDemo {
-    public SortDemo() {
+    boolean countCompares;
+    boolean showSteps;
+    
+    public SortDemo(
+    boolean countCompare, 
+    boolean verboseCompare,
+    boolean showSteps) {
+        MyInteger dummy = new MyInteger(0);
+        if (verboseCompare) {
+            dummy.setVerbose();
+        }
+        if (countCompare) {
+            this.countCompares = true;
+            dummy.resetCount();
+        }
+        this.showSteps = showSteps;
     }
 
+    public void showCount () {
+        if (this.countCompares) {
+            MyInteger dummy = new MyInteger(0);
+            int c = dummy.getCount();
+            System.out.println("That took "+c+" comparisons.");    
+        }
+    }
+    
     public MyInteger[] generateRandomData (int len, int max) {
         Random generator = new Random();
         int rand;
@@ -21,88 +44,60 @@ public class SortDemo {
         return ary;
     }
 
-    public void demoMergeSort 
-    (MyInteger[] data, boolean countCompares, boolean showSteps) {
+    public void demoMergeSort (MyInteger[] data) {
         MyInteger [] buffer = new MyInteger [data.length];
-        VerboseSorter sorter = new VerboseSorter(buffer,showSteps);
-        if (countCompares) {
-            data[0].resetCount();
-        }
+        VerboseSorter sorter = new VerboseSorter(buffer,this.showSteps);
         sorter.sort(data);
-        if (countCompares) {
-            int c = data[0].getCount();
-            System.out.println("Merge sort took "+c+" comparisons.");
-        }
+        showCount();
     }
 
-    public void demoJavaSort
-    (MyInteger[] data, boolean countCompares) {
-        if (countCompares) {
-            data[0].resetCount();
-        }
+    public void demoJavaSort (MyInteger[] data) {
         Arrays.sort(data);
-        if (countCompares) {
-            int c = data[0].getCount();
-            System.out.println("Java sort took "+c+" comparisons.");
-        }
+        showCount();
     }
 
-    public void demoSequentialSearch
-    (MyInteger[] data, MyInteger qry, 
-    boolean countCompares, boolean showSteps) {
+    public void demoSequentialSearch (MyInteger[] data, MyInteger qry) {
         System.out.println("Sequential search for "+qry);
-        VerboseSearcher searcher = new VerboseSearcher(showSteps);
-        if (countCompares) {
-            data[0].resetCount();
-        }
+        VerboseSearcher searcher = new VerboseSearcher(this.showSteps);
         int pos = searcher.sequentialSearch(data,qry);
         if (pos>=0) {
             System.out.printf("Found %s at %d.\n",qry,pos);
         } else {
             System.out.printf("Did not find %s.\n",qry);
         }
-        if (countCompares) {
-            int c = data[0].getCount();
-            System.out.println("Sequential search took "+c+" comparisons.");
-        }
-        
+        showCount();
     }
     
-    public void demoBinarySearch
-    (MyInteger[] data, MyInteger qry, 
-    boolean countCompares, boolean showSteps) {
+    public void demoBinarySearch (MyInteger[] data, MyInteger qry) {
         System.out.println("Binary search for "+qry);
-        VerboseSearcher searcher = new VerboseSearcher(showSteps);
-        if (countCompares) {
-            data[0].resetCount();
-        }
+        VerboseSearcher searcher = new VerboseSearcher(this.showSteps);
         int pos = searcher.binarySearch(data,qry);
         if (pos>=0) {
             System.out.printf("Found %s at %d.\n",qry,pos);
         } else {
             System.out.printf("Did not find %s.\n",qry);
         }
-        if (countCompares) {
-            int c = data[0].getCount();
-            System.out.println("Binary search took "+c+" comparisons.");
-        }
-        
+        showCount();
     }
     
-    public static void main (String [] args) {
-        SortDemo demo = new SortDemo();
+    public static void main () { // (String [] args) {
+        SortDemo demo = new SortDemo(false,false,false); // change these!
         MyInteger[] data = demo.generateRandomData(16,100);
         MyInteger missing = new MyInteger(101);
-        MyInteger sample = data[data.length-1];
-        System.out.println("--- Dealing with shuffled data:");
+        MyInteger sample = data[(data.length-1)/2]; // middle
+        System.out.println("--- Random data:");
         System.out.println(Arrays.deepToString(data));
-        demo.demoSequentialSearch(data,sample,true,true);
-        demo.demoSequentialSearch(data,missing,true,true);
+        System.out.println("--- Sequential search for "+sample);
+        demo.demoSequentialSearch(data,sample);
+        System.out.println("--- Search for a missing element:");
+        demo.demoSequentialSearch(data,missing);
         
-        System.out.println("\n--- Dealing with sorted data:");
-        demo.demoMergeSort(data,false,false);
+        System.out.println("\n--- Sort the data:");
+        demo.demoMergeSort(data);
         System.out.println(Arrays.deepToString(data));
-        demo.demoBinarySearch(data,sample,true,true);
-        demo.demoBinarySearch(data,missing,true,true);
+        System.out.println("--- Binary search for "+sample);
+        demo.demoBinarySearch(data,sample);
+        System.out.println("--- Binary search for "+sample);
+        demo.demoBinarySearch(data,missing);
     }
 }

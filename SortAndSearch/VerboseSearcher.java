@@ -14,8 +14,10 @@ public class VerboseSearcher {
     public int sequentialSearch (MyInteger[] data, MyInteger qry) {
         int pos = -1;
         for (int i=0; i<data.length && pos<0; i++) {
+            say("Look at data["+i+"]="+data[i]);
             if (data[i].compareTo(qry)==0) {
                 pos=i;
+                say("Found it!");
             }
         }
         return pos;
