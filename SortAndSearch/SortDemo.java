@@ -81,23 +81,28 @@ public class SortDemo {
     }
     
     public static void main () { // (String [] args) {
-        SortDemo demo = new SortDemo(false,false,false); // change these!
+        SortDemo demo = new SortDemo(true,true,true); // change these!
         MyInteger[] data = demo.generateRandomData(16,100);
         MyInteger missing = new MyInteger(101);
         MyInteger sample = data[(data.length-1)/2]; // middle
         System.out.println("--- Random data:");
         System.out.println(Arrays.deepToString(data));
         System.out.println("--- Sequential search for "+sample);
+        data[0].resetCount();
         demo.demoSequentialSearch(data,sample);
         System.out.println("--- Search for a missing element:");
+        data[0].resetCount();
         demo.demoSequentialSearch(data,missing);
         
         System.out.println("\n--- Sort the data:");
+        data[0].resetCount();
         demo.demoMergeSort(data);
         System.out.println(Arrays.deepToString(data));
         System.out.println("--- Binary search for "+sample);
+        data[0].resetCount();
         demo.demoBinarySearch(data,sample);
-        System.out.println("--- Binary search for "+sample);
+        System.out.println("--- Binary search for "+missing);
+        data[0].resetCount();
         demo.demoBinarySearch(data,missing);
     }
 }
