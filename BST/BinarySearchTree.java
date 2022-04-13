@@ -1,40 +1,33 @@
 import java.util.Arrays;
 public class BinarySearchTree {
-    BinarySearchTree parent;
+    
     BinarySearchTree left,right;
     Comparable key;
-    Object cargo;
-    public BinarySearchTree(Comparable key,Object cargo)    {
+    Object value;
+    
+    public BinarySearchTree(Comparable key, Object value)    {
         this.key=key;
-        this.cargo=cargo;
+        this.value=value;
         left=null;
         right=null;
     }
 
-    public Comparable getKey() {
-        return key;
-    }
-
-    public Object getValue() {
-        return cargo;
-    }
-    
     public void recursiveAdd (Comparable newKey, Object newVal) {
         int cmp = newKey.compareTo(this.key);
         if (cmp<0) {
             if (left==null) {
                 left=new BinarySearchTree(newKey,newVal);
-                left.parent=this;
             } else {
                 left.recursiveAdd(newKey,newVal);
             }
-        } else {
+        } else if (cmp>0) {
             if (right==null) {
                 right=new BinarySearchTree(newKey,newVal);
-                right.parent=this;
             } else {
                 right.recursiveAdd(newKey,newVal);
             }
+        } else {
+            value = newVal; // same key? overwrite value
         }
     }
 
@@ -58,29 +51,29 @@ public class BinarySearchTree {
         int cmp = searchKey.compareTo(this.key);
         if (cmp<0) {
             if (left==null) {
-                show += "null";
+                show += "not found";
             } else {
                 show += left.showPath(searchKey);
             }
         } else if (cmp>0) {
             if (right==null) {
-                show += "null";
+                show += "key not found";
             } else {
                 show += right.showPath(searchKey);
             }
-        } else show += "found!";
+        } else show += "found, value="+value;
         return show;
     }
 
     public static void main () {
+        // Setup
         String root = "DATA";
-        String missing = "ZOO";
         Object cargo = null;  // just use same cargo everywhere
         BinarySearchTree tree = new BinarySearchTree(root,cargo);
         String [] keys = {"ART","MATH","ACCT","CIS","HIST","PHYS"};
-        // Setup
-        System.out.println("This demo will load "+root+" and");
+        System.out.println("This demo will load keys "+root+" and");
         System.out.println(Arrays.deepToString(keys));
+        System.out.println("All values are null just because we're lazy.");
         // Load and Draw
         System.out.println("BST add one at a time");
         for (String key : keys) {
@@ -89,13 +82,16 @@ public class BinarySearchTree {
         }
         System.out.println(tree.toParens());
         // Search
-        System.out.print("Search for "+root+": ");
+        System.out.println("Ok, let's search the tree.");
+        System.out.print("Search for key "+root+": ");
         System.out.println(tree.showPath(root));
         for (String key : keys) {
-            System.out.print("Search for "+key+": ");
+            System.out.print("Search for key "+key+": ");
             System.out.println(tree.showPath(key));
         }
-        System.out.print("Search for "+missing+": ");
+        // Worst case
+        String missing = "ZOO";
+        System.out.print("Search for key "+missing+": ");
         System.out.println(tree.showPath(missing));
     }
 }
