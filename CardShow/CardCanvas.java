@@ -85,6 +85,8 @@ extends Canvas {
             c = cards.get(0);
             i = c.getImage();
             g.drawImage(i, x, y, null);
+            i = c.getImage();
+            g.drawImage(i, x, y, null);
         }
         x += cardWidth + 15;
         y = 20;
