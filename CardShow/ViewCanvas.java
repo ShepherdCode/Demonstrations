@@ -12,6 +12,8 @@ extends Canvas {
     CardView cardView;
     int dealerTop;
     int playerTop;
+    int dealerCards;
+    int playerCards;
     int cardWidth;
     int cardHeight;
 
@@ -20,14 +22,17 @@ extends Canvas {
         this.cardBack = cardView.getImage(0);
         this.cardWidth = cardBack.getWidth(null);
         this.cardHeight = cardBack.getHeight(null);
-        this.setState(0,0);
+        this.setState(0,0,0,0);
         this.cardTableGreen=new Color(0x088A4B); 
         this.setBackground (this.cardTableGreen);
     }
 
-    public void setState (int dealerTop, int playerTop) {
+    public void setState (int dealerTop, int playerTop,
+    int dealerCards, int playerCards) {
         this.dealerTop = dealerTop;
         this.playerTop = playerTop;
+        this.dealerCards = dealerCards;
+        this.playerCards = playerCards;
     }
     
     @Override
@@ -40,21 +45,24 @@ extends Canvas {
 
     @Override
     public void paint(Graphics g) {
-        int x = 15;
-        int y = 10;
+        int LEFT = 15;
+        int TOP = 10;
+        int BETWEEN = 15;
+        int x = LEFT;
+        int y = TOP;
         if (dealerTop != 0) {
-            if (dealerTop != 52) {
+            if (dealerCards > 1) {
                 g.drawImage(cardBack, x, y, null);
                 x+=1;
                 y+=1;
             }
             g.drawImage(cardBack, x, y, null);
         }
-        x = 15 + cardWidth + 15;
-        y = 20;
+        x = LEFT + cardWidth + BETWEEN;
+        y = LEFT;
         if (playerTop != 0) {
             Image img = cardView.getImage(playerTop);
-            if (playerTop > 1) {
+            if (playerCards > 1) {
                 g.drawImage(img, x, y, null);
                 x+=1;
                 y+=1;

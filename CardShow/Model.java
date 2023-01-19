@@ -29,6 +29,14 @@ public class Model {
         return cardPlayed + 1;
     }
     
+    public int getDealerHeight () {
+        return 52 - cardPlayed ;
+    }
+    
+    public int getPlayerHeight () {
+        return cardPlayed ;
+    }
+    
     public int getPlayerTop () {
         return cardPlayed;
     }

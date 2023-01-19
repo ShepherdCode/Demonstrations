@@ -14,7 +14,10 @@ public class View {
         frame1 = new JFrame();
         cardView = new CardView();
         canvas = new ViewCanvas(cardView);
-        canvas.setState(model.getDealerTop(),model.getPlayerTop());
+        canvas.setState(model.getDealerTop(),
+            model.getPlayerTop(),
+            model.getDealerHeight(),
+            model.getPlayerHeight());
         buttons = new ButtonHandler(this);
         menu1 = new ViewMenu(this);
         text = new TextField("   ");
@@ -35,14 +38,20 @@ public class View {
     
     public void dealCard() {
         model.dealCard();
-        canvas.setState(model.getDealerTop(),model.getPlayerTop());
+        canvas.setState(model.getDealerTop(),
+            model.getPlayerTop(),
+            model.getDealerHeight(),
+            model.getPlayerHeight());
         canvas.repaint();
         sayCard();
     }
     
     public void returnCard() {
         model.returnCard();
-        canvas.setState(model.getDealerTop(),model.getPlayerTop());
+        canvas.setState(model.getDealerTop(),
+            model.getPlayerTop(),
+            model.getDealerHeight(),
+            model.getPlayerHeight());
         canvas.repaint();
         sayCard();
     }
