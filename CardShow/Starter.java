@@ -1,4 +1,7 @@
-
+/**
+ * Start the CardView program.
+ * Use main() with or without parameters to start.
+ */
 public class Starter {
     public static void main () {
         main(null);

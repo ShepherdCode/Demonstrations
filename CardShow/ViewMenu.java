@@ -2,6 +2,10 @@ import java.awt.*;
 import java.awt.event.*;
 public class ViewMenu 
 extends MenuBar 
+
+/**
+ * Manage the menu portion of the graphical user interface.
+ */
 implements ActionListener {
     //MenuBar menuBar;
     Menu backMenu;
