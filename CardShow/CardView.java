@@ -4,10 +4,12 @@ import javax.swing.ImageIcon;
 public class CardView {
     String cardset;
     String SUITS;
+    String RANKS;
 
     public CardView () {
         cardset = "cardset-oxymoron";
         SUITS = "shdc";
+        RANKS = "A23456789TJQK";
     }
 
     public Image getImage (int cardNum) {
@@ -22,5 +24,15 @@ public class CardView {
                     cardset, rank, suit);
         }
         return new ImageIcon(filename).getImage();
+    }
+    
+    public String getShortName (int cardNum) {
+        String name = "--";
+        if (cardNum>0) {
+            char suit = SUITS.charAt((cardNum-1)/13);
+            char rank = RANKS.charAt((cardNum-1)%13);
+            name = "" + rank + suit;
+        }
+        return name;
     }
 }

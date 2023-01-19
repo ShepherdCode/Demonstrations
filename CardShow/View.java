@@ -5,6 +5,7 @@ public class View {
     ViewCanvas canvas;
     CardView cardView;
     ButtonHandler buttons;
+    TextField text;    
     ViewMenu menu1;
     Model model;
     int cardIndex;
@@ -16,6 +17,7 @@ public class View {
         canvas.setState(model.getDealerTop(),model.getPlayerTop());
         buttons = new ButtonHandler(this);
         menu1 = new ViewMenu(this);
+        text = new TextField("   ");
         cardIndex = 0;
     }
     public void go () {
@@ -25,7 +27,9 @@ public class View {
         frame1.setMenuBar(menu1);
         frame1.add(canvas);
         frame1.add(buttons);
+        frame1.add(text);
         frame1.pack();
+        sayCard();
         frame1.setVisible(true);        
     }
     
@@ -33,20 +37,24 @@ public class View {
         model.dealCard();
         canvas.setState(model.getDealerTop(),model.getPlayerTop());
         canvas.repaint();
+        sayCard();
     }
     
     public void returnCard() {
         model.returnCard();
         canvas.setState(model.getDealerTop(),model.getPlayerTop());
         canvas.repaint();
+        sayCard();
     }
 
+    void sayCard () {
+        int cardNum = model.getPlayerTop();
+        String show = cardView.getShortName(cardNum).toUpperCase();
+        text.setText(show);
+    }
+    
     public void setBackground (Color c) {
         canvas.setBackground(c);
     }
     
-    public static void main () {
-        View gui = new View (); // constructor
-        gui.go();
-    }
 }
