@@ -3,6 +3,7 @@ import javax.swing.JFrame;
 public class View {
     JFrame frame1; // instance variable
     ViewCanvas canvas;
+    CardView cardView;
     ButtonHandler buttons;
     ViewMenu menu1;
     Model model;
@@ -10,7 +11,8 @@ public class View {
     public View()    {
         this.model = new Model();
         frame1 = new JFrame();
-        canvas = new ViewCanvas();
+        cardView = new CardView();
+        canvas = new ViewCanvas(cardView);
         canvas.setState(model.getDealerTop(),model.getPlayerTop());
         buttons = new ButtonHandler(this);
         menu1 = new ViewMenu(this);
