@@ -14,14 +14,13 @@ extends Canvas {
     int playerTop;
     int cardWidth;
     int cardHeight;
-    final int NO_CARD = 0;
 
     public ViewCanvas (CardView cardView) {
         this.cardView = cardView;
         this.cardBack = cardView.getImage(0);
         this.cardWidth = cardBack.getWidth(null);
         this.cardHeight = cardBack.getHeight(null);
-        this.setState(NO_CARD,NO_CARD);
+        this.setState(0,0);
         this.cardTableGreen=new Color(0x088A4B); 
         this.setBackground (this.cardTableGreen);
     }
@@ -43,13 +42,23 @@ extends Canvas {
     public void paint(Graphics g) {
         int x = 15;
         int y = 10;
-        if (dealerTop != NO_CARD) {
+        if (dealerTop != 0) {
+            if (dealerTop != 52) {
+                g.drawImage(cardBack, x, y, null);
+                x+=1;
+                y+=1;
+            }
             g.drawImage(cardBack, x, y, null);
         }
-        x += cardWidth + 15;
+        x = 15 + cardWidth + 15;
         y = 20;
-        if (playerTop != NO_CARD) {
+        if (playerTop != 0) {
             Image img = cardView.getImage(playerTop);
+            if (playerTop > 1) {
+                g.drawImage(img, x, y, null);
+                x+=1;
+                y+=1;
+            }
             g.drawImage(img, x, y, null);
         }
     }
