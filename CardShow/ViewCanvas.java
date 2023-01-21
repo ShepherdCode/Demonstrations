@@ -6,7 +6,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
- * Draw two piles of cards on a card table background.
+ * Draws two piles of cards on a card table background.
  */
 
 public class ViewCanvas 
@@ -21,29 +21,28 @@ extends Canvas {
     int cardWidth;
     int cardHeight;
 
+    /**
+     * Constructor.
+     * @param Object describing how to draw a card.
+     */
     public ViewCanvas (CardView cardView) {
         this.cardView = cardView;
         this.cardBack = cardView.getImage(0);
         this.cardWidth = cardBack.getWidth(null);
         this.cardHeight = cardBack.getHeight(null);
-        this.setState(0,0,0,0);
         this.setBackground (this.CARD_TABLE_GREEN);
     }
 
     /**
-     * Determine what the canvas will draw.
-     * @param dealerTop Card atop the dealer pile.
-     * @param playerTop Card atop the player pile.
-     * @param dealerCards Number of cards in dealer pile.
-     * @param playerCards Number of cards in player pile.
+     * Describe the card piles.
+     * This determines what the canvas will draw.
+     * @param Object describing current game state.
      */
-    public void setState (int dealerTop, 
-    int playerTop,
-    int dealerCards, int playerCards) {
-        this.dealerTop = dealerTop;
-        this.playerTop = playerTop;
-        this.dealerCards = dealerCards;
-        this.playerCards = playerCards;
+    public void setState (Status s) {
+        this.dealerTop = s.dealerTop;
+        this.playerTop = s.playerTop;
+        this.dealerCards = s.dealerHeight;
+        this.playerCards = s.playerHeight;
     }
 
     @Override

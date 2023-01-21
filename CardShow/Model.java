@@ -6,7 +6,7 @@
  * At all times, every card belongs to one actor.
  */
 public class Model {
-    int cardPlayed;
+    int cardInPlay;
     int FIRST_CARD = 1;
     int LAST_CARD = 52;
     
@@ -16,69 +16,44 @@ public class Model {
     public static final int NO_CARD = 0; 
 
     public Model()    {
-        cardPlayed = NO_CARD;
+        cardInPlay = NO_CARD;
     }
 
     /**
+     * Generate a representation of the game state.
+     * Compute the heights of both card piles.
+     * Compute the top card for each pile.
+     * @return A new status object.
+     */
+    public Status getStatus() {
+        // All status depends on cardInPlay.
+        Status status = new Status();
+        status.playerTop = cardInPlay;
+        if (cardInPlay == LAST_CARD) {
+            status.dealerTop = NO_CARD;
+        } else {
+            status.dealerTop = cardInPlay + 1;
+        }
+        status.playerHeight = cardInPlay;
+        status.dealerHeight = LAST_CARD - cardInPlay;
+        return status;
+    }
+    
+    /**
      * Change the total number of cards.
-     * The default value is 52.
      * Most card game applications should not call this.
+     * The default value is 52 i.e. a normal deck of cards.
      */
     public void setLastCard (int last) {
         this.LAST_CARD = last;
     }
 
     /**
-     * Return the special value that indicates 
-     * a dealer or player has no cards.
-     */
-    int getNoCard () {
-        return NO_CARD;
-    }
-
-    /**
-     * Identify the top card on the dealer's deck.
-     * By default, cards are numbered 1 to 52.
-     * Returns an indicator value if dealer has no cards.
-     * @see getNoCard
-     */
-    public int getDealerTop () {
-        if (cardPlayed == LAST_CARD) {
-            return NO_CARD;
-        }
-        return cardPlayed + 1;
-    }
-
-    /**
-     * Identify the number of cards in the dealer's deck.
-     */
-    public int getDealerHeight () {
-        return 52 - cardPlayed ;
-    }
-
-    /**
-     * Identify the top card on the player's deck.
-     * By default, cards are numbered 1 to 52.
-     * Returns an indicator value if player has no cards.
-     * @see getNoCard
-     */
-    public int getPlayerHeight () {
-        return cardPlayed ;
-    }
-
-    /**
-     * Identify the number of cards in the player's deck.
-     */
-    public int getPlayerTop () {
-        return cardPlayed;
-    }
-
-    /**
      * Take dealer's top card, make it player's top card.
      */
     public void dealCard() {
-        if (cardPlayed != LAST_CARD) {
-            cardPlayed++;
+        if (cardInPlay != LAST_CARD) {
+            cardInPlay++;
         }
     }
 
@@ -86,8 +61,8 @@ public class Model {
      * Take player's top card, make it dealer's top card.
      */
     public void returnCard() {
-        if (cardPlayed != NO_CARD) {
-            cardPlayed--;
+        if (cardInPlay != NO_CARD) {
+            cardInPlay--;
         }
     }
 }

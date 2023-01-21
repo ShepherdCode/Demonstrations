@@ -2,7 +2,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
- * Generate representations of individual cards.
+ * Knows how to draw individual cards.
  */
 public class CardView {
     String CARDSET = "cardset-oxymoron";
